@@ -28,6 +28,7 @@ export async function DELETE(
 ) {
 
   const messageId = params.message_id;
+  console.log(messageId)
 
   /* const searchParams = useSearchParams();   useParams can only be run on client side and this is a {api}
   const messageId = searchParams.get("message_id"); */
@@ -46,7 +47,7 @@ export async function DELETE(
   try {
     const updateResult = await userModel.updateOne(
       { _id: _user._id },
-      { $pull: { message: { createdA: messageId } } }
+      { $pull: { message: { createdAt: messageId}}}
     );
 
     if (updateResult.modifiedCount === 0) {

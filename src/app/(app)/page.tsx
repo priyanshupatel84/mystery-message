@@ -32,7 +32,7 @@ export default function Home() {
 
         {/* Carousel for Messages */}
         <Carousel
-          plugins={[Autoplay({ delay: 5000 })]}
+          plugins={[Autoplay({ delay: 3000 })]}
           className="w-full max-w-lg md:max-w-xl"
         >
           <CarouselContent>

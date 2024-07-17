@@ -15,9 +15,11 @@ import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AcceptMessageSchema } from '@/schemas/acceptMessageSchema';
+import { useRouter } from 'next/navigation';
 
 
 function UserDashboard() {
+  const router = useRouter();
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
@@ -126,7 +128,8 @@ function UserDashboard() {
   };
 
   if (!session || !session.user) {
-    return <div></div>;
+    router.replace("/")
+    return <div className='text-xl font-sans'> Session is over</div>;
   }
 
   const { username } = session.user;
