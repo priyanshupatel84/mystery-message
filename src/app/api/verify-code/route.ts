@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import userModel from "@/models/User.model";
-import { verify } from "crypto";
+
 
 export async function POST(request: Request) {
   await dbConnect();

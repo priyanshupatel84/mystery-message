@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.16.0",
     "@hookform/resolvers": "^3.6.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
@@ -25,6 +26,7 @@
     "dayjs": "^1.11.11",
     "embla-carousel-autoplay": "^8.1.5",
     "embla-carousel-react": "^8.1.5",
+    "express": "^4.19.2",
     "lucide-react": "^0.399.0",
     "mongoose": "^8.4.3",
     "next": "14.2.4",

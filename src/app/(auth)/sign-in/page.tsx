@@ -20,9 +20,6 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 
 
-
-
-
 const Page = () => {
 
   const { toast } = useToast();

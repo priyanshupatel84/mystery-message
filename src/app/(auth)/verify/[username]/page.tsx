@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const verifyAccount = () => {
+const VerifyAccount = () => {
   const router = useRouter();
   const params = useParams(); // this is to access parameter
 
@@ -88,4 +88,4 @@ const verifyAccount = () => {
   );
 };
 
-export default verifyAccount;
+export default VerifyAccount;

@@ -9,7 +9,6 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CardHeader, CardContent, Card } from "@/components/ui/card";
-import { useCompletion } from "ai/react";
 import {
   Form,
   FormControl,
@@ -40,15 +39,8 @@ export default function Message_page() {
   const params = useParams<{ username: string }>();
   const username = params.username;
 
-  const {
-    complete,
-    completion,
-    isLoading: isSuggestLoading,
-    error,
-  } = useCompletion({
-    api: "/api/suggest-messages",
-    initialCompletion: initialMessageString,
-  });
+  // const [suggest_message , setSuggest_message] = useState<string>(initialMessageString)
+
 
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
@@ -62,8 +54,8 @@ export default function Message_page() {
   const handleMessageClick = (message: string) => {
     form.setValue("content", message);
   };
-
   const [isLoading, setIsLoading] = useState(false);
+
 
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
     setIsLoading(true);
@@ -97,8 +89,15 @@ export default function Message_page() {
 
   // const fetchSuggestedMessages = async () => {
   //   try {
-  //     complete("");
+  //     const response = await axios.post(`/api/suggest-messages/`);
+  //     // const response = await fetch("/api/suggest-messages/", {cache: 'no-store'})
+
+  //     console.log("sdfh-> ", response)
+  //     // setSuggest_message(response.message);
+  //     setIsLoading(false)
+
   //   } catch (error) {
+
   //     console.error("Error fetching messages:", error);
   //     // Handle error appropriately
   //   }
@@ -150,7 +149,7 @@ export default function Message_page() {
           {/* <Button
             onClick={fetchSuggestedMessages}
             className="my-4"
-            disabled={isSuggestLoading}
+            disabled={isLoading}
           >
             Suggest Messages
           </Button> */}
@@ -162,10 +161,8 @@ export default function Message_page() {
             <h3 className="text-xl font-semibold">Messages</h3>
           </CardHeader>
           <CardContent className="flex flex-col space-y-4">
-            {error ? (
-              <p className="text-red-500">{error.message}</p>
-            ) : (
-              parseStringMessages(completion).map((message, index) => (
+            {
+              parseStringMessages(initialMessageString).map((message, index) => (
                 <Button
                   key={index}
                   variant="outline"
@@ -175,7 +172,7 @@ export default function Message_page() {
                   {message}
                 </Button>
               ))
-            )}
+            }
           </CardContent>
         </Card>
       </div>
